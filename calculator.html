@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <style>
+            body {
+                background-color: grey  ;
+            }
+            div {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+  background: white;
+  /* border-radius: 5px; */
+            }
+            table, th, td {
+                border: 0.1px solid black;
+                border-collapse: collapse;
+            }
+            td {
+                width: 100px;
+                height: 100px;
+                text-align: center;
+            }
+            .black {
+                background: black;
+                color: white;
+            }
+            .grey {
+                background: 	#707070;
+                color: white;
+            }
+            .green {
+                background: #27A770;
+                color: white;
+            }
+            #result {
+                text-align: left;
+                padding-left: 15px;
+                font-size: 25px;
+            }
+        </style>
+
+        <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const cells = document.querySelectorAll(".number");
+    
+            for (let i = 0; i < document.getElementsByClassName("number").length; i++) {
+                cells[i].addEventListener("click", addToInput);
+            }
+
+            const operation = document.getElementById('operation');
+            operation.addEventListener('click', evaluate);
+
+            const resetButton = document.getElementById('reset');
+            resetButton.addEventListener('click', reset);
+
+
+            function addToInput(event) {
+                console.log("Hell" + event.target.dataset.number)
+
+                document.getElementById("result").innerHTML += event.target.dataset.number;
+            }
+
+            function evaluate() {
+                const string = document.getElementById('result').textContent;
+                console.log(string);
+                document.getElementById('result').innerHTML = eval(string);
+            }
+
+            function reset() {
+                document.getElementById('result').innerHTML = "";
+            }
+    });
+
+            
+
+            
+        </script>
+    </head>
+    <body>
+<div>
+        <table>
+            <tr>
+                <td colspan="3" id="result"></td>
+                <td class="green" id="reset">AC</td>
+            </tr>
+            <tr>
+                <td class="black number" data-number="7">7</td>
+                <td class="black number" data-number="8">8</td>
+                <td class="black number" data-number="9">9</td>
+                <td class="grey number" data-number="+">+</td>
+            </tr>
+            <tr>
+                <td class="black number" data-number="4">4</td>
+                <td class="black number" data-number="5">5</td>
+                <td class="black number" data-number="6">6</td>
+                <td class="grey number" data-number="-">-</td>
+            </tr>
+            <tr>
+                <td class="black number" data-number="1">1</td>
+                <td class="black number" data-number="2">2</td>
+                <td class="black number" data-number="3">3</td>
+                <td class="grey number" data-number="/">/</td>
+            </tr>
+            <tr>
+                <td class="black number" data-number=".">.</td>
+                <td class="black number" data-number="0">0</td>
+                <td class="black" id="operation">=</td>
+                <td class="grey number" data-number="*">*</td>
+            </tr>
+        </table>
+    </div>
+    </body>
+</html>
